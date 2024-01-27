@@ -55,7 +55,8 @@ The script generates two files in the user's `Downloads` directory:
 - `ovpnremotes.txt`: Contains OpenVPN remote entries for the matching IP addresses, ready to be included in your OpenVPN configuration.
 
 ## Note
-- Replaace `token = ""` with your own ipinfo.io API token. 
+- Replaace `YourIpInfoTokenHere` in `getregion.conf` with your own ipinfo.io API token.
+- If you decide to relocate the conf file update the `load_config` in the `getregion.py` script.
 - Ensure your `ipinfo.io` API token is valid and has not exceeded its rate limits.
 - The script's performance and accuracy depend on the correctness of the `.ovpn` files and the availability of the `ipinfo.io` service.
 

@@ -6,6 +6,13 @@ import requests
 import time
 import socket
 import ipaddress
+import configparser
+
+def load_config(config_file):
+    """Load configuration from a file."""
+    config = configparser.ConfigParser()
+    config.read(config_file)
+    return config['DEFAULT']['IpInfoToken']
 
 def is_ip_address(host):
     """Check if the given host is a valid IP address."""
@@ -93,6 +100,9 @@ def main():
     if args.debug:
         print("Debug mode enabled")
 
+    # Load API token from config file
+    token = load_config('getregion.conf')
+
     home = os.path.expanduser('~')
     region_ips_path = os.path.join(home, "Downloads/regionips.txt")
     ovpn_remotes_path = os.path.join(home, "Downloads/ovpnremotes.txt")
@@ -101,7 +111,6 @@ def main():
     hosts = get_unique_hosts(args.configdir, args.debug)
 
     # Fetch region IPs
-    token = ""  # Replace with your actual token
     matching_ips = fetch_region_ips(hosts, args.region, token, args.debug)
 
     # Write to files if there are matching IPs
