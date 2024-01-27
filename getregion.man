@@ -1,0 +1,30 @@
+.TH VPNCONFIG 1 "27 Jan 2024" "version 1.0" "Get OpenVPN Regions Manual"
+.SH NAME
+vpnconfig \- Fetch and configure OpenVPN server IPs based on region
+.SH SYNOPSIS
+.B vpnconfig
+[\fI\,--configdir\fR \fIDIRECTORY\fR] [\fI\,--region\fR \fIREGION\fR] [\fI\,--debug\fR]
+.SH DESCRIPTION
+\fBvpnconfig\fR is a utility script for fetching OpenVPN server IP addresses that match a specified geographical region. It reads .ovpn configuration files from a given directory, resolves any domain names to IP addresses, checks these IPs against the specified region using ipinfo.io, and generates configuration snippets for OpenVPN clients.
+.SH OPTIONS
+.TP
+\fB\-\-configdir\fR \fIDIRECTORY\fR
+Specifies the directory containing OpenVPN .ovpn configuration files. This option is required.
+.TP
+\fB\-\-region\fR \fIREGION\fR
+Sets the desired region to filter the IP addresses. The default region is "America/Los_Angeles".
+.TP
+\fB\-\-debug\fR
+Enables debug output, providing detailed information about the script's execution process.
+.SH EXAMPLES
+To fetch server IPs for the default region (America/Los_Angeles) from configs in /etc/openvpn:
+.RS
+vpnconfig --configdir /etc/openvpn
+.RE
+To fetch server IPs for the Europe/London region with debug information:
+.RS
+vpnconfig --configdir /etc/openvpn --region "Europe/London" --debug
+.RE
+.SH AUTHORS
+Written by ScourgeTheTracker.
+
